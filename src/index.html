@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Palette</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+  </head>
+
+  <body>
+    <header class="page-header">
+      <p class="page-header__title">CodeJam - Palette</p>
+    </header>
+    <main>
+      <div class="container">
+        <aside class="panels">
+          <ul class="buttons-panel">
+            <li class="buttons-panel__item">
+              <button class="action" id="paint-btn" title="P key">
+                <span class="action__icon action__icon--paint"></span>Paint
+                bucket
+              </button>
+            </li>
+            <li class="buttons-panel__item">
+              <button class="action" id="choose-btn" title="C key">
+                <span class="action__icon action__icon--choose"></span>Choose
+                color
+              </button>
+            </li>
+            <li class="buttons-panel__item">
+              <button class="action" id="move-btn" title="M key">
+                <span class="action__icon action__icon--move"></span>Move
+              </button>
+            </li>
+            <li class="buttons-panel__item">
+              <button class="action" id="transform-btn" title="T key">
+                <span class="action__icon action__icon--transform"></span
+                >Transform
+              </button>
+            </li>
+          </ul>
+          <ul class="color-panel">
+            <li class="color-panel__item">
+              <span class="color-panel__bg color-panel__bg--current"></span
+              ><span class="color-panel__text">Current color</span>
+            </li>
+            <li class="color-panel__item">
+              <span class="color-panel__bg color-panel__bg--prev"></span
+              ><span class="color-panel__text">Prev color</span>
+            </li>
+            <li class="color-panel__item">
+              <span class="color-panel__bg color-panel__bg--red"></span
+              ><span class="color-panel__text">red</span>
+            </li>
+            <li class="color-panel__item">
+              <span class="color-panel__bg color-panel__bg--blue"></span
+              ><span class="color-panel__text">blue</span>
+            </li>
+            <!--<li class="color-panel__item">
+              <span class="color-panel__bg color-panel__bg--custom"></span
+              ><input
+                type="color"
+                name="palette-color"
+                id="custom-color"
+              /><label for="custom-color">Custom color</label>
+            </li>-->
+          </ul>
+        </aside>
+        <section class="palette"></section>
+      </div>
+    </main>
+    <footer class="page-footer"></footer>
+  </body>
+</html>
