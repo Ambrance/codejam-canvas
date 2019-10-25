@@ -4,8 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/script.js',
-  entry: './src/style.scss',
+  entry: ['./src/script.js', './src/style.scss'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'script.js',
@@ -50,12 +49,20 @@ module.exports = {
       {
         test: /\.(png|svg|jpg)$/,
         use: {
-          loader: 'file-loader',
+          loader: 'url-loader?name=assets/img/[name].[ext]',
           options: {
+            limit: 200,
             name: '[name].[ext]',
             outputPath: './assets/img',
             publicPath: './assets/img',
           },
+        },
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
         },
       },
     ],
