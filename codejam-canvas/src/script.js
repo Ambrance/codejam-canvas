@@ -6,25 +6,36 @@ const ctx = canvas.getContext('2d');
 const switherBox = document.querySelector('.canvas-switcher');
 
 function renderImage(data, flag) {
-  //ctx.clearRect(0, 0, canvas.width, canvas.height);
-  let width = data[0].length;
-  let height = data.length;
-  canvas.width = width;
-  canvas.height = height;
-  for (let row = 0; row < height; row++) {
-    for (let col = 0; col < width; col++) {
-      if (flag === 'hex') {
-        ctx.fillStyle = `#${data[row][col]}`;
-      } else if (flag === 'rgba') {
-        data[row][col][3] = data[row][col][3] / 255;
-        ctx.fillStyle = `rgba(${data[row][col]})`;
-      }
-      ctx.fillRect(col, row, 1, 1);
-    }
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  canvas.style.imageRendering = 'pixelated';
+  let flattenedRGBAValues;
+  const flatten = (x, y) => x.concat(y);
+
+  const hexToRGBA = hexStr => [
+    parseInt(hexStr.substr(0, 2), 16),
+    parseInt(hexStr.substr(2, 2), 16),
+    parseInt(hexStr.substr(4, 2), 16),
+    255,
+  ];
+  if (flag === 'hex') {
+    flattenedRGBAValues = data
+      .reduce(flatten)
+      .map(hexToRGBA)
+      .reduce(flatten);
+  } else if (flag === 'rgba') {
+    flattenedRGBAValues = data.reduce(flatten).reduce(flatten);
   }
+  canvas.width = canvas.height = data.length;
+  const imgData = new ImageData(
+    Uint8ClampedArray.from(flattenedRGBAValues),
+    data.length,
+    data.length,
+  );
+  ctx.putImageData(imgData, 0, 0);
 }
 function loadImage() {
-  //ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  canvas.style.imageRendering = 'auto';
   canvas.width = 256;
   canvas.height = 256;
   let pic = new Image();
