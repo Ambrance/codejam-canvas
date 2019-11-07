@@ -1,6 +1,7 @@
 $main-bg: #e5e5e5;
 $white: #fff;
 $basic-font: Roboto, Arial, Helvetica, sans-serif;
+$shadow: 0px 4px 4px rgba(0, 0, 0, 0.24), 0px 0px 4px rgba(0, 0, 0, 0.12);
 
 body {
   background-color: $main-bg;
@@ -21,7 +22,7 @@ body {
   justify-content: center;
   height: 50px;
   background-color: $white;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24), 0px 0px 4px rgba(0, 0, 0, 0.12);
+  box-shadow: $shadow;
 }
 
 .page-header__title {
@@ -45,10 +46,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24), 0px 0px 4px rgba(0, 0, 0, 0.12);
+  box-shadow: $shadow;
   &__item {
     cursor: pointer;
     margin-bottom: 15px;
+    padding: 5px 0;
     width: 95%;
     &:last-child {
       margin-bottom: 0;
@@ -59,20 +61,12 @@ body {
   }
 }
 .color-panel {
-  @extend .buttons-panel;
   &__item {
-    @extend .buttons-panel__item;
     padding: 5px 0;
     display: flex;
     align-items: center;
     background-color: transparent;
     position: relative;
-    &:last-child {
-      @extend .buttons-panel__item, :last-child;
-    }
-    &:hover {
-      @extend .buttons-panel__item, :hover;
-    }
     * {
       position: relative;
       z-index: unset;
@@ -124,23 +118,9 @@ body {
   }
   &__icon {
     display: block;
-    width: 40px;
-    height: 40px;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+    width: 30px;
+    height: 30px;
     margin-right: 20px;
-    &--paint {
-      background-image: url('./img/i1.png');
-    }
-    &--choose {
-      background-image: url('./img/i2.png');
-    }
-    &--move {
-      background-image: url('./img/i3.png');
-    }
-    &--transform {
-      background-image: url('./img/i4.png');
-    }
   }
 }
 

@@ -16,6 +16,40 @@
   </head>
 
   <body>
+    <svg width="0" height="0" class="hidden">
+      <symbol
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 32 32"
+        id="transform"
+      >
+        <title>transfer</title>
+        <path
+          fill="#757575"
+          d="M31.998 24H7.992v4L0 22l7.992-6v4h24.006zM0 12h23.998v4l8-6-8-6v4H0z"
+        ></path>
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 32" id="paint">
+        <title>paint</title>
+        <path
+          fill="#757575"
+          d="M32 20s-4 5.791-4 8a4 4 0 0 0 8 0c0-2.209-4-8-4-8zm-.586-6.434L18.433.585c-.391-.391-.902-.586-1.414-.586s-1.024.195-1.414.586l-5.099 5.099L5.12.297a.999.999 0 0 0-1.414 0L2.292 1.711a1 1 0 0 0 0 1.414l5.387 5.386-5.923 5.922a5.999 5.999 0 0 0 0 8.484l7.324 7.324c1.171 1.171 2.707 1.758 4.242 1.758s3.071-.586 4.242-1.758l13.848-13.848a2 2 0 0 0 .001-2.828zm-7.263 4.436H4.121c.085-.24.223-.499.464-.739l5.922-5.922 3.662 3.662a1.998 1.998 0 1 0 2.827-2.828l-3.662-3.662 3.684-3.684L27.17 14.981l-3.021 3.021z"
+        ></path>
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="move">
+        <title>move</title>
+        <path
+          fill="#757575"
+          d="M17.984 5.921v8.063h8v-4L32 16l-6.016 6.015v-4.093h-8v8.063h4.031L16 32l-6.016-6.015h4v-8.063h-8v4.062L0 16l5.984-5.984v3.968h8V5.921h-3.906L16 0l5.922 5.921h-3.938z"
+        ></path>
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="brush">
+        <title>brush</title>
+        <path
+          fill="#757575"
+          d="M30.826 1.172a4 4 0 0 0-5.656 0L13.77 12.57a9.32 9.32 0 0 1 5.656 5.66l11.4-11.402a3.997 3.997 0 0 0 0-5.656zm-14.83 20.16a5.335 5.335 0 0 0-10.668 0l.004.004A10.665 10.665 0 0 1 0 30.566l.016.02A10.65 10.65 0 0 0 5.332 32C11.223 32 16 27.223 16 21.332h-.004z"
+        ></path>
+      </symbol>
+    </svg>
     <header class="page-header">
       <p class="page-header__title">CodeJam - Canvas</p>
     </header>
@@ -25,42 +59,45 @@
           <ul class="buttons-panel">
             <li class="buttons-panel__item">
               <button class="action" id="paint-btn" title="P key">
-                <span class="action__icon action__icon--paint"></span>Paint
-                bucket
+                <svg class="action__icon"><use xlink:href="#paint"></use></svg>
+                <span class="action__name"></span>Paint bucket
               </button>
             </li>
             <li class="buttons-panel__item">
               <button class="action" id="choose-btn" title="C key">
-                <span class="action__icon action__icon--choose"></span>Choose
-                color
+                <svg class="action__icon"><use xlink:href="#brush"></use></svg>
+                <span class="action__name"></span>Choose color
               </button>
             </li>
             <li class="buttons-panel__item">
               <button class="action" id="move-btn" title="M key">
-                <span class="action__icon action__icon--move"></span>Move
+                <svg class="action__icon"><use xlink:href="#move"></use></svg>
+                <span class="action__name"></span>Move
               </button>
             </li>
             <li class="buttons-panel__item">
               <button class="action" id="transform-btn" title="T key">
-                <span class="action__icon action__icon--transform"></span
-                >Transform
+                <svg class="action__icon">
+                  <use xlink:href="#transform"></use>
+                </svg>
+                <span class="action__name"></span>Transform
               </button>
             </li>
           </ul>
-          <ul class="color-panel">
-            <li class="color-panel__item">
+          <ul class="buttons-panel color-panel">
+            <li class="buttons-panel__item color-panel__item">
               <span class="color-panel__bg color-panel__bg--current"></span
               ><span class="color-panel__text">Current color</span>
             </li>
-            <li class="color-panel__item">
+            <li class="buttons-panel__item color-panel__item">
               <span class="color-panel__bg color-panel__bg--prev"></span
               ><span class="color-panel__text">Prev color</span>
             </li>
-            <li class="color-panel__item">
+            <li class="buttons-panel__item color-panel__item">
               <span class="color-panel__bg color-panel__bg--red"></span
               ><span class="color-panel__text">red</span>
             </li>
-            <li class="color-panel__item">
+            <li class="buttons-panel__item color-panel__item">
               <span class="color-panel__bg color-panel__bg--blue"></span
               ><span class="color-panel__text">blue</span>
             </li>

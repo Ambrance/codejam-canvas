@@ -5,35 +5,41 @@ const canvas = document.getElementById('picture');
 const ctx = canvas.getContext('2d');
 const switherBox = document.querySelector('.canvas-switcher');
 
-function renderImage(data, flag) {
+function renderImage(data) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   canvas.style.imageRendering = 'pixelated';
-  let flattenedRGBAValues;
-  const flatten = (x, y) => x.concat(y);
+  const colorArr = convertImageData(data);
+  canvas.width = canvas.height = data.length;
+  const imgData = new ImageData(
+    Uint8ClampedArray.from(colorArr),
+    data.length,
+    data.length,
+  );
+  ctx.putImageData(imgData, 0, 0);
+}
 
+function convertImageData(data) {
+  let flattenedRGBAValues;
+  let regex = new RegExp('^(?:[A-Fa-f0-9]{3}){1,2}$');
+  const flatten = (x, y) => x.concat(y);
   const hexToRGBA = hexStr => [
     parseInt(hexStr.substr(0, 2), 16),
     parseInt(hexStr.substr(2, 2), 16),
     parseInt(hexStr.substr(4, 2), 16),
     255,
   ];
-  if (flag === 'hex') {
+  if (regex.test(data[0][0])) {
     flattenedRGBAValues = data
       .reduce(flatten)
       .map(hexToRGBA)
       .reduce(flatten);
-  } else if (flag === 'rgba') {
+  } else {
     flattenedRGBAValues = data.reduce(flatten).reduce(flatten);
   }
-  canvas.width = canvas.height = data.length;
-  const imgData = new ImageData(
-    Uint8ClampedArray.from(flattenedRGBAValues),
-    data.length,
-    data.length,
-  );
-  ctx.putImageData(imgData, 0, 0);
+  return flattenedRGBAValues;
 }
-function loadImage() {
+
+function drawImage() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   canvas.style.imageRendering = 'auto';
   canvas.width = 256;
@@ -54,18 +60,19 @@ function loadImage() {
     );
   };
 }
+
 switherBox.addEventListener('click', function(evt) {
   const switcherItem = evt.target.closest('.canvas-switcher__item');
   if (switcherItem) {
     switch (switcherItem.firstChild.nextSibling.id) {
       case 'sun':
-        renderImage(data1, 'hex');
+        renderImage(data1);
         break;
       case 'codewars':
-        renderImage(data2, 'rgba');
+        renderImage(data2);
         break;
       case 'school':
-        loadImage();
+        drawImage();
         break;
     }
   }
